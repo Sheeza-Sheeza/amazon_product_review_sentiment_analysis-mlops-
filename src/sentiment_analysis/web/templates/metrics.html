@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+{% block title %}Metrics{% endblock %}
+
+{% block head %}
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+{% endblock %}
+
+{% block content %}
+<section class="page-header">
+  <h1>Model Metrics</h1>
+  <p>Training performance across all compared models.</p>
+</section>
+
+<div id="metricsLoading" class="status-loading">Loading model metrics...</div>
+<div id="metricsError" class="error-panel hidden"></div>
+
+<section id="metricsContent" class="hidden">
+  <div class="metrics-summary">
+    <div class="metric-card highlight">
+      <span class="metric-label">Best Model</span>
+      <span class="metric-value" id="bestModelName">—</span>
+    </div>
+    <div class="metric-card">
+      <span class="metric-label">Best F1 Macro</span>
+      <span class="metric-value" id="bestF1">—</span>
+    </div>
+    <div class="metric-card">
+      <span class="metric-label">MLflow Experiment</span>
+      <span class="metric-value small" id="mlflowExp">—</span>
+    </div>
+  </div>
+
+  <div class="chart-container">
+    <canvas id="metricsChart"></canvas>
+  </div>
+
+  <div id="modelCards" class="model-cards"></div>
+</section>
+{% endblock %}
+
+{% block scripts %}
+<script src="/static/js/metrics.js"></script>
+{% endblock %}

@@ -1,0 +1,38 @@
+# Virtual environment
+.venv/
+
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+dist/
+build/
+
+# uv
+.python-version.local
+
+# MLflow
+mlruns/
+
+# DVC
+dvc-storage/
+data/processed/
+
+# App runtime
+artifacts/batch_results/
+
+# Data (tracked by DVC)
+data/raw/7817_1.csv
+
+# IDE
+.idea/
+.vscode/
+*.swp
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Local env files
+.env
+.env.*

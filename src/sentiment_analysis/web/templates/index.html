@@ -1,0 +1,82 @@
+{% extends "base.html" %}
+{% block title %}Home{% endblock %}
+
+{% block content %}
+<section class="hero">
+  <div class="hero-content">
+    <h1>E-commerce Review Sentiment Analysis</h1>
+    <p class="hero-subtitle">
+      Production-ready NLP pipeline for classifying Amazon reviews as
+      <strong>positive</strong>, <strong>neutral</strong>, or <strong>negative</strong>.
+    </p>
+    <div class="hero-actions">
+      <a href="/predict" class="btn btn-primary">Try Single Prediction</a>
+      <a href="/batch" class="btn btn-secondary">Upload CSV Batch</a>
+    </div>
+  </div>
+</section>
+
+<section class="dashboard-section">
+  <div class="dashboard-header">
+    <h2>Review Sentiment Dashboard</h2>
+    <p>Live counts from your review dataset</p>
+  </div>
+  <div id="dashboardLoading" class="status-loading">Loading sentiment counts...</div>
+  <div id="dashboardError" class="error-panel hidden"></div>
+  <div id="dashboardContent" class="dashboard-grid hidden">
+    <div class="dashboard-card dashboard-positive">
+      <span class="dashboard-label">Positive Reviews</span>
+      <span class="dashboard-count" id="positiveCount">—</span>
+      <span class="dashboard-pct" id="positivePct"></span>
+    </div>
+    <div class="dashboard-card dashboard-negative">
+      <span class="dashboard-label">Negative Reviews</span>
+      <span class="dashboard-count" id="negativeCount">—</span>
+      <span class="dashboard-pct" id="negativePct"></span>
+    </div>
+    <div class="dashboard-card dashboard-neutral">
+      <span class="dashboard-label">Neutral Reviews</span>
+      <span class="dashboard-count" id="neutralCount">—</span>
+      <span class="dashboard-pct" id="neutralPct"></span>
+    </div>
+    <div class="dashboard-card dashboard-total">
+      <span class="dashboard-label">Total Labeled</span>
+      <span class="dashboard-count" id="totalLabeled">—</span>
+      <span class="dashboard-pct" id="totalReviewsNote"></span>
+    </div>
+  </div>
+</section>
+
+<section class="cards-grid">
+  <a href="/predict" class="card card-link">
+    <div class="card-icon predict-icon">✦</div>
+    <h3>Single Review</h3>
+    <p>Paste a review and get instant sentiment with confidence scores.</p>
+  </a>
+  <a href="/batch" class="card card-link">
+    <div class="card-icon batch-icon">▤</div>
+    <h3>Batch CSV</h3>
+    <p>Upload a CSV file and download predictions for all reviews.</p>
+  </a>
+  <a href="/metrics" class="card card-link">
+    <div class="card-icon metrics-icon">◉</div>
+    <h3>Model Metrics</h3>
+    <p>Compare model performance, F1 scores, and confusion matrices.</p>
+  </a>
+  <a href="/analytics" class="card card-link">
+    <div class="card-icon analytics-icon">◧</div>
+    <h3>Analytics</h3>
+    <p>Explore dataset distributions, text length, and class imbalance.</p>
+  </a>
+</section>
+
+<section class="status-panel">
+  <h2>System Status</h2>
+  <div id="healthStatus" class="status-loading">Checking system health...</div>
+</section>
+{% endblock %}
+
+{% block scripts %}
+<script src="/static/js/dashboard.js"></script>
+<script src="/static/js/home.js"></script>
+{% endblock %}

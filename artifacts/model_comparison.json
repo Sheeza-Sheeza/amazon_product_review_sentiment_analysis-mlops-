@@ -1,0 +1,18 @@
+[
+  {
+    "model_name": "tfidf_logistic_regression",
+    "metrics": {
+      "accuracy": 0.850828729281768,
+      "f1_macro": 0.46242870257498453,
+      "f1_weighted": 0.8202348284558947,
+      "precision_macro": 0.5271164021164021,
+      "recall_macro": 0.4436663554310613,
+      "cv_accuracy_mean": 0.844904214559387,
+      "cv_accuracy_std": 0.02814789426922848,
+      "cv_f1_macro_mean": 0.46181723701464533,
+      "cv_f1_macro_std": 0.08304699106180424,
+      "cv_f1_weighted_mean": 0.811675047242477,
+      "cv_f1_weighted_std": 0.03134441262800226
+    }
+  }
+]

@@ -1,0 +1,22 @@
+services:
+  - type: web
+    name: reviewsense-api
+    runtime: docker
+    plan: free
+    region: oregon
+    dockerfilePath: ./Dockerfile
+    healthCheckPath: /health
+    envVars:
+      - key: MODEL_PATH
+        value: /app/artifacts/best_model/model.joblib
+      - key: DATA_PATH
+        value: /app/data/raw/7817_1.csv
+      - key: ARTIFACTS_DIR
+        value: /app/artifacts
+      - key: MLFLOW_EXPERIMENT_NAME
+        value: amazon_review_sentiment
+      - key: MLFLOW_TRACKING_URI
+        sync: false
+      - key: MLFLOW_MODEL_URI
+        sync: false
+    autoDeploy: true

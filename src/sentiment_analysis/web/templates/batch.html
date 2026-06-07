@@ -1,0 +1,51 @@
+{% extends "base.html" %}
+{% block title %}Batch{% endblock %}
+
+{% block content %}
+<section class="page-header">
+  <h1>Batch CSV Prediction</h1>
+  <p>Upload a CSV with review text to classify all rows at once.</p>
+</section>
+
+<section class="batch-container">
+  <div class="upload-zone" id="uploadZone">
+    <input type="file" id="csvFile" accept=".csv" hidden>
+    <div class="upload-content">
+      <div class="upload-icon">📄</div>
+      <p>Drag &amp; drop a CSV file here, or <button type="button" class="link-btn" id="browseBtn">browse</button></p>
+      <p class="upload-hint">Supported columns: reviews.text, text, reviewText</p>
+    </div>
+  </div>
+
+  <button id="uploadBtn" class="btn btn-primary" disabled>Upload &amp; Predict</button>
+
+  <div id="batchProgress" class="progress-panel hidden">
+    <div class="spinner"></div>
+    <p>Processing reviews...</p>
+  </div>
+
+  <div id="batchResult" class="result-panel hidden">
+    <h2>Batch Results</h2>
+    <p>Processed <strong id="batchTotal">0</strong> reviews.</p>
+    <a id="downloadLink" class="btn btn-secondary" href="#" download>Download Results CSV</a>
+    <div class="table-wrapper">
+      <table id="batchTable">
+        <thead>
+          <tr>
+            <th>Text</th>
+            <th>Sentiment</th>
+            <th>Confidence</th>
+          </tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+    </div>
+  </div>
+
+  <div id="batchError" class="error-panel hidden"></div>
+</section>
+{% endblock %}
+
+{% block scripts %}
+<script src="/static/js/batch.js"></script>
+{% endblock %}

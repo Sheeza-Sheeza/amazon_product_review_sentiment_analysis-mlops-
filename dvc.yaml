@@ -1,0 +1,26 @@
+stages:
+  prepare_data:
+    cmd: python scripts/prepare_data.py
+    deps:
+      - scripts/prepare_data.py
+      - data/raw/7817_1.csv
+    outs:
+      - data/processed/reviews.parquet:
+          cache: true
+
+  train:
+    cmd: uv run train-sentiment --config config/default.yaml
+    deps:
+      - src/sentiment_analysis
+      - config/default.yaml
+      - data/processed/reviews.parquet
+    params:
+      - config/default.yaml:
+          - training.cv_folds
+          - training.models
+          - vectorizer.max_features
+    outs:
+      - artifacts/training_summary.json:
+          cache: true
+      - artifacts/best_model:
+          cache: true

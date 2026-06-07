@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+{% block title %}Predict{% endblock %}
+
+{% block content %}
+<section class="page-header">
+  <h1>Single Review Prediction</h1>
+  <p>Enter an e-commerce review to classify its sentiment.</p>
+</section>
+
+<section class="predict-container">
+  <form id="predictForm" class="predict-form">
+    <label for="reviewText">Review Text</label>
+    <textarea
+      id="reviewText"
+      rows="6"
+      placeholder="e.g. This product exceeded my expectations. Great build quality and fast shipping!"
+      required
+    ></textarea>
+    <button type="submit" class="btn btn-primary" id="predictBtn">Analyze Sentiment</button>
+  </form>
+
+  <div id="predictResult" class="result-panel hidden">
+    <h2>Prediction Result</h2>
+    <div id="sentimentBadge" class="sentiment-badge"></div>
+    <p class="confidence-text">Confidence: <span id="confidenceValue"></span></p>
+    <div class="probability-bars" id="probabilityBars"></div>
+  </div>
+
+  <div id="predictError" class="error-panel hidden"></div>
+</section>
+{% endblock %}
+
+{% block scripts %}
+<script src="/static/js/predict.js"></script>
+{% endblock %}

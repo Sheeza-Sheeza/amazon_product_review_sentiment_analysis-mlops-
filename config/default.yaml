@@ -1,0 +1,45 @@
+data:
+  data_path: data/raw/7817_1.csv
+  text_column: null
+  rating_column: null
+  drop_duplicates: true
+  min_text_length: 10
+
+split:
+  test_size: 0.2
+  random_state: 42
+  stratify: true
+
+vectorizer:
+  max_features: 20000
+  ngram_range: [1, 2]
+  min_df: 2
+  max_df: 0.95
+  sublinear_tf: true
+
+embedding:
+  model_name: sentence-transformers/all-MiniLM-L6-v2
+  batch_size: 32
+  normalize_embeddings: true
+
+training:
+  cv_folds: 5
+  use_class_weights: true
+  models:
+    - tfidf_logistic_regression
+    - tfidf_linear_svc
+    - tfidf_multinomial_nb
+    - embedding_logistic_regression
+
+mlflow:
+  enabled: true
+  experiment_name: amazon_review_sentiment
+  tracking_uri: null
+  run_name: null
+  register_best_model: true
+  registered_model_name: amazon_review_sentiment_classifier
+
+output:
+  output_dir: artifacts
+  save_best_model: true
+  save_comparison_report: true

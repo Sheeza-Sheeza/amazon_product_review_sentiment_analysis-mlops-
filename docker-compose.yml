@@ -1,0 +1,30 @@
+services:
+  app:
+    build: .
+    ports:
+      - "8000:8000"
+    environment:
+      - MODEL_PATH=/app/artifacts/best_model/model.joblib
+      - DATA_PATH=/app/data/raw/7817_1.csv
+      - ARTIFACTS_DIR=/app/artifacts
+      - MLFLOW_TRACKING_URI=file:/app/mlruns
+      - MLFLOW_EXPERIMENT_NAME=amazon_review_sentiment
+    volumes:
+      - ./artifacts:/app/artifacts
+      - ./data:/app/data
+      - ./mlruns:/app/mlruns
+    restart: unless-stopped
+
+  mlflow:
+    image: ghcr.io/mlflow/mlflow:v2.22.0
+    ports:
+      - "5000:5000"
+    command: >
+      mlflow server
+      --host 0.0.0.0
+      --port 5000
+      --backend-store-uri file:///mlruns
+      --default-artifact-root file:///mlruns
+    volumes:
+      - ./mlruns:/mlruns
+    restart: unless-stopped

@@ -1,0 +1,10 @@
+training:
+  cv_folds: 5
+  models:
+    - tfidf_logistic_regression
+    - tfidf_linear_svc
+    - tfidf_multinomial_nb
+    - embedding_logistic_regression
+
+vectorizer:
+  max_features: 20000

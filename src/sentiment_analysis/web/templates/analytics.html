@@ -1,0 +1,77 @@
+{% extends "base.html" %}
+{% block title %}Analytics{% endblock %}
+
+{% block head %}
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+{% endblock %}
+
+{% block content %}
+<section class="page-header">
+  <h1>Sentiment Analytics</h1>
+  <p>Dataset-level insights from the review corpus.</p>
+</section>
+
+<div id="analyticsLoading" class="status-loading">Loading analytics...</div>
+<div id="analyticsError" class="error-panel hidden"></div>
+
+<section id="analyticsContent" class="hidden">
+  <div class="dashboard-grid" style="margin-bottom:1.5rem">
+    <div class="dashboard-card dashboard-positive">
+      <span class="dashboard-label">Positive Reviews</span>
+      <span class="dashboard-count" id="positiveCount">—</span>
+      <span class="dashboard-pct" id="positivePct"></span>
+    </div>
+    <div class="dashboard-card dashboard-negative">
+      <span class="dashboard-label">Negative Reviews</span>
+      <span class="dashboard-count" id="negativeCount">—</span>
+      <span class="dashboard-pct" id="negativePct"></span>
+    </div>
+    <div class="dashboard-card dashboard-neutral">
+      <span class="dashboard-label">Neutral Reviews</span>
+      <span class="dashboard-count" id="neutralCount">—</span>
+      <span class="dashboard-pct" id="neutralPct"></span>
+    </div>
+    <div class="dashboard-card dashboard-total">
+      <span class="dashboard-label">Total Labeled</span>
+      <span class="dashboard-count" id="labeledReviews">—</span>
+      <span class="dashboard-pct" id="totalReviewsNote"></span>
+    </div>
+  </div>
+
+  <div class="metrics-summary">
+    <div class="metric-card">
+      <span class="metric-label">Total Reviews</span>
+      <span class="metric-value" id="totalReviews">—</span>
+    </div>
+    <div class="metric-card">
+      <span class="metric-label">Avg Text Length</span>
+      <span class="metric-value" id="avgLength">—</span>
+    </div>
+    <div class="metric-card">
+      <span class="metric-label">Imbalance Ratio</span>
+      <span class="metric-value" id="imbalanceRatio">—</span>
+    </div>
+  </div>
+
+  <div class="charts-row">
+    <div class="chart-container half">
+      <h3>Sentiment Distribution</h3>
+      <canvas id="sentimentChart"></canvas>
+    </div>
+    <div class="chart-container half">
+      <h3>Rating Distribution</h3>
+      <canvas id="ratingChart"></canvas>
+    </div>
+  </div>
+
+  <div class="chart-container">
+    <h3>Top Brands</h3>
+    <canvas id="brandsChart"></canvas>
+  </div>
+</section>
+{% endblock %}
+
+{% block scripts %}
+<script src="/static/js/dashboard.js"></script>
+<script src="/static/js/analytics.js"></script>
+{% endblock %}
